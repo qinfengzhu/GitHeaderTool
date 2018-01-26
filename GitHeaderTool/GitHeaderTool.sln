@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHeaderTool.Core", "GitHeaderTool.Core\GitHeaderTool.Core.csproj", "{DA19671F-6F4C-4093-821E-2277A8F2DB86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHeaderTool", "GitHeaderTool\GitHeaderTool.csproj", "{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHeaderTool.Core.Test", "GitHeaderTool.Core.Test\GitHeaderTool.Core.Test.csproj", "{AFC56A85-0784-4D19-9A50-20DB7A860834}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA19671F-6F4C-4093-821E-2277A8F2DB86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA19671F-6F4C-4093-821E-2277A8F2DB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA19671F-6F4C-4093-821E-2277A8F2DB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA19671F-6F4C-4093-821E-2277A8F2DB86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC56A85-0784-4D19-9A50-20DB7A860834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC56A85-0784-4D19-9A50-20DB7A860834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC56A85-0784-4D19-9A50-20DB7A860834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC56A85-0784-4D19-9A50-20DB7A860834}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

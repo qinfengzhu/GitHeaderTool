@@ -5,7 +5,18 @@
     /// </summary>
     public interface IKeySetting
     {
+        /// <summary>
+        /// 命令Key
+        /// </summary>
         string Key { get; set; }
+        /// <summary>
+        /// 参数值
+        /// </summary>
+        string Value { get; }
+        /// <summary>
+        /// 权重
+        /// </summary>
+        int Level { get; }
         IExcuteTarget CreateTarget();
         IExcuteTarget CreateTarget(IExcuteResult excuteResult);
     }

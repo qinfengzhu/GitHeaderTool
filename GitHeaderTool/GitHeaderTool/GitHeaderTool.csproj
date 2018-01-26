@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>3ffb1154-4b86-477d-9b11-d20ed9de6df0</ProjectGuid>
+    <ProjectGuid>{BA45CCDE-E473-45ED-AD5C-613F872FE5BB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GitHeaderTool</RootNamespace>

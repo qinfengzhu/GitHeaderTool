@@ -27,5 +27,16 @@ namespace GitHeaderTool.Core.Keys
         {
             throw new NotImplementedException();
         }
+
+
+        public string Value
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public int Level
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

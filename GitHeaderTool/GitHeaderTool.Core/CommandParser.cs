@@ -20,5 +20,6 @@ namespace GitHeaderTool.Core
     /// </summary>
     public class CommandParser
     {
+
     }
 }
