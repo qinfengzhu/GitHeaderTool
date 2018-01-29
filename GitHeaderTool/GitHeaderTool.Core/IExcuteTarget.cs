@@ -5,6 +5,7 @@
     /// </summary>
     public interface IExcuteTarget
     {
+        string Path { get; }
         /// <summary>
         /// 命令头部
         /// </summary>

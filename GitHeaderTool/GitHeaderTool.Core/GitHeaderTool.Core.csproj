@@ -39,12 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandConverter.cs" />
+    <Compile Include="CommandPair.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="Commands\ContentCatCommand.cs" />
     <Compile Include="Commands\FileContentAddCommand.cs" />
     <Compile Include="Commands\FileContentRemoveCommand.cs" />
     <Compile Include="Commands\FileCreateCommand.cs" />
     <Compile Include="Commands\FileSearchCommand.cs" />
+    <Compile Include="ECommandLevel.cs" />
     <Compile Include="ICommandExcute.cs" />
     <Compile Include="IExcuteResult.cs" />
     <Compile Include="IExcuteTarget.cs" />

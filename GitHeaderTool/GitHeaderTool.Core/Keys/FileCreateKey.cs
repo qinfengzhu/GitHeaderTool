@@ -6,18 +6,28 @@ namespace GitHeaderTool.Core.Keys
     /// </summary>
     public class FileCreateKey:IKeySetting
     {
-        public string Key
+        /// <summary>
+        /// 命令关键字
+        /// </summary>
+        public string Key { get; private set; }
+        /// <summary>
+        /// 命令参数值
+        /// </summary>
+        public string Value { get; private set; }
+        /// <summary>
+        /// 执行优先等级
+        /// </summary>
+        public int Level { get; private set; }
+        public FileCreateKey(string key, string value)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            Key = key;
+            Value = value;
+            Level = (int)ECommandLevel.x;
         }
-
+        public T Accept<T>(CommandConverter<T> converter)
+        {
+            return converter.ConvertFileCreateKey(this);
+        }
         public IExcuteTarget CreateTarget()
         {
             throw new NotImplementedException();
@@ -26,17 +36,6 @@ namespace GitHeaderTool.Core.Keys
         public IExcuteTarget CreateTarget(IExcuteResult excuteResult)
         {
             throw new NotImplementedException();
-        }
-
-
-        public string Value
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int Level
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }

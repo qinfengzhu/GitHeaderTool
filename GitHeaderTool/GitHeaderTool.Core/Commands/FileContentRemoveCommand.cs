@@ -4,11 +4,12 @@ namespace GitHeaderTool.Core.Commands
     /// <summary>
     /// 文件内容删除命令
     /// </summary>
-    public class FileContentRemoveCommand:ICommandExcute
+    public class FileContentRemoveCommand : ICommandExcute
     {
-        public IKeySetting CommandKey
+        public IKeySetting CommandKey { get; private set; }
+        public FileContentRemoveCommand(IKeySetting keySetting)
         {
-            get { throw new NotImplementedException(); }
+            CommandKey = keySetting;
         }
 
         public IExcuteResult Excute()

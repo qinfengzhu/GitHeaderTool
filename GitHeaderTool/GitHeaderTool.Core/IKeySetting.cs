@@ -8,7 +8,7 @@
         /// <summary>
         /// 命令Key
         /// </summary>
-        string Key { get; set; }
+        string Key { get;}
         /// <summary>
         /// 参数值
         /// </summary>
@@ -16,7 +16,8 @@
         /// <summary>
         /// 权重
         /// </summary>
-        int Level { get; }
+        int Level { get;}
+        T Accept<T>(CommandConverter<T> converter);
         IExcuteTarget CreateTarget();
         IExcuteTarget CreateTarget(IExcuteResult excuteResult);
     }

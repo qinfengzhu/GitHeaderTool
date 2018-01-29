@@ -6,9 +6,10 @@ namespace GitHeaderTool.Core.Commands
     /// </summary>
     public class FileContentAddCommand:ICommandExcute
     {
-        public IKeySetting CommandKey
+        public IKeySetting CommandKey { get; private set; }
+        public FileContentAddCommand(IKeySetting keySetting)
         {
-            get { throw new NotImplementedException(); }
+            CommandKey = keySetting;
         }
 
         public IExcuteResult Excute()

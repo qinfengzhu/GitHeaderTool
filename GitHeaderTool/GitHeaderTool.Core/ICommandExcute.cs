@@ -8,7 +8,7 @@
         /// <summary>
         /// 命令关键字
         /// </summary>
-        IKeySetting CommandKey { get; }
+        IKeySetting CommandKey { get;}
         /// <summary>
         /// 执行结果
         /// </summary>
@@ -20,5 +20,6 @@
         /// <param name="nextCommand">下一个执行命令</param>
         /// <returns>结尾执行命令</returns>
         ICommandExcute SetNextCommand(ICommandExcute nextCommand);
+
     }
 }

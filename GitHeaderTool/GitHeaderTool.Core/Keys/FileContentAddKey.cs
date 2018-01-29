@@ -7,28 +7,28 @@ namespace GitHeaderTool.Core.Keys
     /// </summary>
     public class FileContentAddKey:IKeySetting
     {
-        public string Key
+        /// <summary>
+        /// 命令关键字
+        /// </summary>
+        public string Key { get; private set; }
+        /// <summary>
+        /// 命令参数值
+        /// </summary>
+        public string Value { get; private set; }
+        /// <summary>
+        /// 执行优先等级
+        /// </summary>
+        public int Level { get; private set; }
+        public FileContentAddKey(string key,string value)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            Key = key;
+            Value = value;
+            Level = (int)(ECommandLevel.a);
         }
-
-        public string Value
+        public T Accept<T>(CommandConverter<T> converter)
         {
-            get { throw new NotImplementedException(); }
+            return converter.ConvertContentAddKey(this);
         }
-
-        public int Level
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         public IExcuteTarget CreateTarget()
         {
             throw new NotImplementedException();

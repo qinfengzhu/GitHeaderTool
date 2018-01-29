@@ -6,6 +6,7 @@ namespace GitHeaderTool.Core.Results
     /// </summary>
     public class StringResult:IExcuteResult
     {
+        public string CurrentValue { get; set; }
         public IExcuteTarget CurrentTarget
         {
             get { throw new NotImplementedException(); }

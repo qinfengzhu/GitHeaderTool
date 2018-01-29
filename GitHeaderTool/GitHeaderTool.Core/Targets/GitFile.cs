@@ -4,11 +4,13 @@ namespace GitHeaderTool.Core.Targets
     /// <summary>
     /// Git 的文件处理
     /// </summary>
-    public class GitFile:IExcuteTarget
+    internal class GitFile : IExcuteTarget
     {
-        public ICommandExcute Header
+        public string Path { get; private set; }
+        public GitFile(CommandPair commandPair)
         {
-            get { throw new NotImplementedException(); }
+            Path = commandPair.Paramater;
         }
+        public ICommandExcute Header { get; private set; }
     }
 }

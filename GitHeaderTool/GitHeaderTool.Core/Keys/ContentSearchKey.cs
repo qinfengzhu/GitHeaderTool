@@ -7,16 +7,27 @@ namespace GitHeaderTool.Core.Keys
     /// </summary>
     public  class ContentSearchKey:IKeySetting
     {
-        public string Key
+        /// <summary>
+        /// 命令关键字
+        /// </summary>
+        public string Key { get; private set; }
+        /// <summary>
+        /// 命令参数值
+        /// </summary>
+        public string Value { get; private set; }
+        /// <summary>
+        /// 执行优先等级
+        /// </summary>
+        public int Level { get; private set; }
+        public ContentSearchKey(string key, string value)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            Key = key;
+            Value = value;
+            Level = (int)ECommandLevel.s;
+        }
+        public T Accept<T>(CommandConverter<T> converter)
+        {
+            return converter.ConvertContentSearchKey(this);
         }
 
         public IExcuteTarget CreateTarget()
@@ -27,17 +38,6 @@ namespace GitHeaderTool.Core.Keys
         public IExcuteTarget CreateTarget(IExcuteResult excuteResult)
         {
             throw new NotImplementedException();
-        }
-
-
-        public string Value
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int Level
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }
