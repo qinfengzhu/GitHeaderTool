@@ -26,18 +26,18 @@ namespace GitHeaderTool.Core
     public class CommandParser
     {
         public CommandParser() { }
-        public ICommandExcute ParserToCommand(params string[] commands)
+        public IExcuteTarget ParserToCommand(params string[] commands)
         {
             //检查命令格式
             if (commands == null)
             {
                 PrintError("GitHeaderTool 需要参数处理");
-                return default(ICommandExcute);
+                return default(IExcuteTarget);
             }
             if (commands.Length == 1 && commands[0].ToString() == "-help" || commands[0].ToString() == "help")
             {
                 PrintHelpInfo();
-                return default(ICommandExcute); ;
+                return default(IExcuteTarget); ;
             }
             //分配命令
             var commandPairs = GetCommandPairs(commands);
@@ -45,12 +45,12 @@ namespace GitHeaderTool.Core
             if(commandPairs.Count<2)
             {
                 PrintError("命令缺失");
-                return default(ICommandExcute); 
+                return default(IExcuteTarget); 
             }
             if(commandPairs.First().CommandLevel!=ECommandLevel.f)
             {
                 PrintError("命令最少要包含 -f 操作");
-                return default(ICommandExcute); 
+                return default(IExcuteTarget); 
             }
             //分配KeySetting
             IExcuteTarget excuteTarget = null;
@@ -78,7 +78,7 @@ namespace GitHeaderTool.Core
                 //跳转到下一个target处理
                 currentExcuteTarget = currentExcuteTarget.NextTarget;
             }
-            return excuteTarget.Header;
+            return excuteTarget;
         }
         /// <summary>
         /// 获取排序好的命令
