@@ -12,7 +12,7 @@ namespace GitHeaderTool.Core
     /// 键与命令转换器
     /// </summary>
     /// <typeparam name="T">转换的类型</typeparam>
-    public abstract class CommandConverter<T>
+    public abstract class CommandConverter<T> where T:ICommandExcute
     {
         protected CommandConverter() { }
         public T Convert(IKeySetting keySetting)

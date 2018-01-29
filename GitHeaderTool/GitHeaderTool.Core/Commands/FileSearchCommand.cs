@@ -11,15 +11,17 @@ namespace GitHeaderTool.Core.Commands
         {
             CommandKey = keySetting;
         }
-
-        public IExcuteResult Excute()
+        /// <summary>
+        /// 返回文件路径
+        /// </summary>
+        /// <returns></returns>
+        public object Excute()
         {
-            throw new NotImplementedException();
+            return CommandKey.Value;
         }
-
-        public ICommandExcute SetNextCommand(ICommandExcute nextCommand)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// 设置下一个执行Key
+        /// </summary>
+        public IKeySetting NextKeySetting { get; set; }
     }
 }

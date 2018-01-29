@@ -6,7 +6,7 @@
     public interface IExcuteResult
     {
         string CurrentValue { get; set; }
-        IExcuteTarget CurrentTarget { get; }
-        IExcuteTarget GetNextTarget(IKeySetting keySetting);
+        IExcuteTarget ContextTarget { get; }
+        IExcuteTarget SetNextTarget(ICommandExcute commandExcute);
     }
 }

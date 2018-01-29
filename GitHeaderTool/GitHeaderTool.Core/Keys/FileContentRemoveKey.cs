@@ -5,6 +5,7 @@ namespace GitHeaderTool.Core.Keys
     /// <summary>
     /// 文件内容删除Key
     /// </summary>
+    [KeyLevel(CommandLevel = ECommandLevel.r)]
     public class FileContentRemoveKey:IKeySetting
     {
         /// <summary>
@@ -19,24 +20,25 @@ namespace GitHeaderTool.Core.Keys
         /// 执行优先等级
         /// </summary>
         public int Level { get; private set; }
+        /// <summary>
+        /// 对应的命令
+        /// </summary>
+        public ICommandExcute CommandExcute { get; private set; }
+        /// <summary>
+        /// 上下文
+        /// </summary>
+        public IExcuteTarget ContextTarget { get; set; }
         public FileContentRemoveKey(string key,string value)
         {
             Key = key;
             Value = value;
             Level = (int)ECommandLevel.r;
         }
-        public T Accept<T>(CommandConverter<T> converter)
+        public T Accept<T>(CommandConverter<T> converter) where T : ICommandExcute
         {
-            return converter.ConvertContentRemoveKey(this);
-        }
-        public IExcuteTarget CreateTarget()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IExcuteTarget CreateTarget(IExcuteResult excuteResult)
-        {
-            throw new NotImplementedException();
+            var commandExcute= converter.ConvertContentRemoveKey(this);
+            CommandExcute = commandExcute;
+            return commandExcute;
         }
     }
 }

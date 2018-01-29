@@ -57,10 +57,9 @@
     <Compile Include="Keys\FileContentRemoveKey.cs" />
     <Compile Include="Keys\FileCreateKey.cs" />
     <Compile Include="Keys\FileSearchKey.cs" />
+    <Compile Include="Keys\KeyFactory.cs" />
+    <Compile Include="Keys\KeyLevelAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Results\RegularResult.cs" />
-    <Compile Include="Results\StringResult.cs" />
-    <Compile Include="Targets\GitDirectory.cs" />
     <Compile Include="Targets\GitFile.cs" />
   </ItemGroup>
   <ItemGroup />

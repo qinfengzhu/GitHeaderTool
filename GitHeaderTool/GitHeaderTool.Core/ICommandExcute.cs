@@ -13,13 +13,10 @@
         /// 执行结果
         /// </summary>
         /// <returns>执行结果</returns>
-        IExcuteResult Excute();
+        object Excute();
         /// <summary>
-        /// 设置下一个执行命令
+        /// 下一个关键字命令
         /// </summary>
-        /// <param name="nextCommand">下一个执行命令</param>
-        /// <returns>结尾执行命令</returns>
-        ICommandExcute SetNextCommand(ICommandExcute nextCommand);
-
+        IKeySetting NextKeySetting { get; set; }
     }
 }

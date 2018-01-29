@@ -7,10 +7,18 @@ namespace GitHeaderTool.Core.Targets
     internal class GitFile : IExcuteTarget
     {
         public string Path { get; private set; }
-        public GitFile(CommandPair commandPair)
+        public GitFile(string filePath,ICommandExcute commandExcute)
         {
-            Path = commandPair.Paramater;
+            Path = filePath;
+            Header = commandExcute;
         }
+        /// <summary>
+        /// 命令执行头部
+        /// </summary>
         public ICommandExcute Header { get; private set; }
+        /// <summary>
+        /// 下一个处理目标
+        /// </summary>
+        public IExcuteTarget NextTarget { get; set; }
     }
 }

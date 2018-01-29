@@ -12,14 +12,10 @@ namespace GitHeaderTool.Core.Commands
             CommandKey = keySetting;
         }
 
-        public IExcuteResult Excute()
+        public object Excute()
         {
             throw new NotImplementedException();
         }
-
-        public ICommandExcute SetNextCommand(ICommandExcute nextCommand)
-        {
-            throw new NotImplementedException();
-        }
+        public IKeySetting NextKeySetting { get; set; }
     }
 }
