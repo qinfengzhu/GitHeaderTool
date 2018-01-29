@@ -57,7 +57,27 @@ namespace GitHeaderTool.Core
             IKeySetting fileSearchKey = KeyFactory.Instance.CreateBy(commandPairs.First());
             excuteTarget = ((ITarget)fileSearchKey).CreateTarget();
             //配置处理链
-
+            var currentExcuteTarget = excuteTarget;
+            while (currentExcuteTarget!= null)
+            {
+                //配置后续的key处理
+                var nexkeyTail = currentExcuteTarget.Header.NextKeySetting;
+                for (int index = 1, length = commandPairs.Count; index < length;index++ )
+                {
+                    IKeySetting keySetting = KeyFactory.Instance.CreateBy(commandPairs[index]);
+                    if (index == 1)
+                    {
+                        currentExcuteTarget.Header.NextKeySetting = keySetting;                        
+                    }
+                    else
+                    {
+                        nexkeyTail.CommandExcute.NextKeySetting = keySetting;
+                    }
+                    nexkeyTail = keySetting;
+                }
+                //跳转到下一个target处理
+                currentExcuteTarget = currentExcuteTarget.NextTarget;
+            }
             return excuteTarget.Header;
         }
         /// <summary>
