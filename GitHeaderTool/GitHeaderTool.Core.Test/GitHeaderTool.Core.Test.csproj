@@ -50,6 +50,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="CommandEngineTest.cs" />
     <Compile Include="CommandParserTest.cs" />
     <Compile Include="DirectorySearchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +67,7 @@
     <Content Include="TestFiles\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitHeaderTool.Core\GitHeaderTool.Core.csproj">
