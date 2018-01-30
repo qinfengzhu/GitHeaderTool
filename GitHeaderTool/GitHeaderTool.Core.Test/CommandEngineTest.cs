@@ -41,7 +41,7 @@ namespace GitHeaderTool.Core.Test
             string[] commands = new string[]
             {
                 "-f",@"D:\git-project\MyProject","*.cs",
-                "-a",@"/*\r\n* @Author bestkf\r\n* @Time 2018-01-30 \r\n*/\r\n",
+                "-a","/*\r\n* @Author bestkf\r\n* @Time 2018-01-30 \r\n*/\r\n",
             };
             bool result = commandEngine.Excute(commands);
             Assert.AreEqual(true, result);

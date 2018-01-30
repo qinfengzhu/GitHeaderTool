@@ -129,7 +129,7 @@ namespace GitHeaderTool.Core
             #if DEBUG
             Trace.Write(helpInfo.ToString());
             #endif
-            #if RELEASE
+            #if !DEBUG
             Console.Write(helpInfo.ToString());
             #endif
         }
@@ -144,7 +144,7 @@ namespace GitHeaderTool.Core
             #if DEBUG
             Trace.Write(errorInfo);
             #endif
-            #if RELEASE
+            #if !DEBUG
             Console.Write(helpInfo.ToString());
             #endif
         }

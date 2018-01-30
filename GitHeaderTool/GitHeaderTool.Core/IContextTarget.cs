@@ -28,7 +28,8 @@ namespace GitHeaderTool.Core
             set
             {
                 m_filePath = value;
-                m_fileEncoding = EncodingType.GetType(m_filePath);
+                if(File.Exists(m_filePath))
+                    m_fileEncoding = EncodingType.GetType(m_filePath);
             }
         }
         public Encoding FileEncodingType
@@ -38,7 +39,6 @@ namespace GitHeaderTool.Core
         public Dictionary<ECommandLevel, object> ContextResult { get; set; }
         public DefaultContextTarget()
         {
-            FilePath = string.Empty;
             ContextResult = new Dictionary<ECommandLevel, object>();
         }
         /// <summary>

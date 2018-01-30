@@ -81,7 +81,8 @@ namespace GitHeaderTool.Core
                 fileContent.Append("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n");
                 fileContent.Append("<localizationDictionary culture=\"\">\n");
                 fileContent.Append("    <texts>\n");
-                foreach (var data in m_data)
+                var distinctData= m_data.Distinct();
+                foreach (var data in distinctData)
                 {
                     fileContent.Append(data);
                 }

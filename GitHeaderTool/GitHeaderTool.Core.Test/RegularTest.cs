@@ -58,6 +58,7 @@ namespace GitHeaderTool.Core.Test
         /// ^\s*//[\s\S]*?$   单行注释 //    ^\s*//[\s\S]*?$\n  单行注释包括换行符
         /// ^\s*$\n           空行
         /// ^\s*//[\s\S]*     
+        /// ^\s*//[^/]{1}[\s\S]*?$\n  仅//***这种注释
         /// </summary>
         [Test]
         public void SearchHeaderContent()
