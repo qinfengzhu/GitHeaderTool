@@ -96,6 +96,8 @@ namespace GitHeaderTool.Core.Keys
                 files.AddRange(currentDirFiles);
                 files.AddRange(moreFiles);
             }
+            var currentDir = pattern.Split('|').SelectMany(p => Directory.GetFiles(dir, p)).ToList();
+            files.AddRange(currentDir);
             return files;
         }
     }
