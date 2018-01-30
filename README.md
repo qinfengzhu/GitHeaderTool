@@ -62,7 +62,7 @@
 ```csharp
 public void ExcuteRemoveGitFileHeader()
 {
-	var commandEngine = new CommandEngine();
+    var commandEngine = new CommandEngine();
     string[] commands = new string[]
     {
         "-f",@"D:\git-project\Castle.Core","*.cs",
@@ -78,7 +78,7 @@ public void ExcuteRemoveGitFileHeader()
 ```csharp
 public void ExcuteAppendGitFileHeader()
 {
-	var commandEngine = new CommandEngine();
+    var commandEngine = new CommandEngine();
     string[] commands = new string[]
     {
         "-f",@"D:\git-project\MyProject","*.cs",
@@ -94,7 +94,7 @@ public void ExcuteAppendGitFileHeader()
 ```csharp
 public void ExcuteCatContentToXmlFile()
 {
-	var commandEngine = new CommandEngine();
+    var commandEngine = new CommandEngine();
     string[] commands = new string[]
     {
         "-f",@"D:\git-project\MyProject","*.cs|*.cshtml|*.js",
