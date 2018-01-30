@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>本地化显示效果</title>
+</head>
+<body>
+    <div>
+        @Html.Action("LanguageSelection", "Base")
+    </div>
+    <div> 
+        <ul>
+            <li>@L("Username"):<input type="text" id="username" name="username" /></li>
+            <li>@L("Password"):<input type="password" id="password" name="password"/></li>
+        </ul>
+    </div>
+</body>
+</html>

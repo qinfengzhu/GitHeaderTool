@@ -54,9 +54,18 @@
     <Compile Include="DirectorySearchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegularTest.cs" />
+    <Content Include="TestFiles\GraphTestCase.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="TestFiles\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitHeaderTool.Core\GitHeaderTool.Core.csproj">
@@ -64,6 +73,7 @@
       <Name>GitHeaderTool.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

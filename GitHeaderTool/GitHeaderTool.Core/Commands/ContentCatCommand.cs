@@ -21,13 +21,22 @@ namespace GitHeaderTool.Core.Commands
         public void Excute(IContextTarget contextTarget)
         {
             string fileContext =(string)contextTarget.ContextResult[ECommandLevel.f];
-            Regex rgx = new Regex(CommandKey.Value);
-            MatchCollection matches = rgx.Matches(fileContext);
+            MatchCollection matches = Regex.Matches(fileContext, CommandKey.Value,RegexOptions.Multiline);
             List<string> matchContent = new List<string>();
             if (matches.Count > 0)
             {
                 foreach (Match match in matches)
-                    matchContent.Add(match.Value);
+                {
+                    if (match.Groups.Count > 1)
+                    {
+                        string lastValue = match.Groups[1].Value;
+                        matchContent.Add(lastValue);
+                    }
+                    else
+                    {
+                        matchContent.Add(match.Value);
+                    }
+                }
             }
             contextTarget.ContextResult.Add(ECommandLevel.s, matchContent);
         }

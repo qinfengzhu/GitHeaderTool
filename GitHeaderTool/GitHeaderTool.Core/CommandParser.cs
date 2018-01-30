@@ -27,7 +27,7 @@ namespace GitHeaderTool.Core
     {
         public const string ParamterSplit = "&";
         public CommandParser() { }
-        public IExcuteTarget ParserToCommand(params string[] commands)
+        public IExcuteTarget ParserToCommand(string[] commands)
         {
             //检查命令格式
             if (commands == null)
@@ -147,33 +147,6 @@ namespace GitHeaderTool.Core
             #if RELEASE
             Console.Write(helpInfo.ToString());
             #endif
-        }
-    }
-    /// <summary>
-    /// 命令执行器
-    /// </summary>
-    public class CommandEngine
-    {
-        public void Excute(IExcuteTarget excuteTarget)
-        {
-            var contextTarget = excuteTarget;
-            var defaultContextTarget = new DefaultContextTarget();
-            while (contextTarget != null)
-            {
-                //执行处理链
-                contextTarget.Header.Excute(defaultContextTarget);
-                var excuteContext = contextTarget.Header.NextKeySetting;
-                while (excuteContext != null)
-                {
-                    excuteContext.CommandExcute.Excute(defaultContextTarget);
-                    excuteContext = excuteContext.CommandExcute.NextKeySetting;
-                }
-                //再来一次处理下一个文件目标
-                contextTarget = contextTarget.NextTarget;
-                defaultContextTarget.Dispose();
-            }
-            //构建文件
-            WebXmlContainer.BuildFile();
         }
     }
 }

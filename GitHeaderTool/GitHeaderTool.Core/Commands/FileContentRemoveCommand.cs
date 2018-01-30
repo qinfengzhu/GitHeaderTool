@@ -16,8 +16,7 @@ namespace GitHeaderTool.Core.Commands
         public void Excute(IContextTarget contextTarget)
         {
             string fileContext = (string)contextTarget.ContextResult[ECommandLevel.f];
-            Regex rgx = new Regex(CommandKey.Value);
-            rgx.Replace(fileContext, string.Empty);
+            fileContext= Regex.Replace(fileContext, CommandKey.Value, "", RegexOptions.Multiline);
             contextTarget.ContextResult[ECommandLevel.f] = fileContext;
         }
         public IKeySetting NextKeySetting { get; set; }

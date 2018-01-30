@@ -41,7 +41,7 @@ namespace GitHeaderTool.Core.Test
         [Test]
         public void PrintHelpInfoTest()
         {
-            parserInstance.ParserToCommand("-help");
+            parserInstance.ParserToCommand(new string[]{"-help"});
 
             Assert.AreEqual(1, 1);
         }

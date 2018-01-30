@@ -1,26 +1,4 @@
-# GitHeaderTool
-
-删除git项目中，文件头部注释部分，方便我们后期查看源码方便
-
-# 使用方法
-
-目前解析的命令,命令之间用空格隔开,参数与命令之间也用空格隔开
-1. -f: 查找文件
-2. -s: 查找文件中的内容
-3. -r: 删除查找到的文件内容
-4. -a: 追加内容到文件头部
-5. -d: 把查找到的内容以xml的文件放到指定文件中,格式如下
-```xml
-<?xml version="1.0" encoding="utf-8" ?>
-  <localizationDictionary culture="">
-    <texts>
-      <text name="SmtpHost">SmtpHost</text>
-    </texts>
-  </localizationDictionary>
-</xml>
-```
-
-## 工具的场景使用方式
+﻿## 工具的场景使用方式
 
 1. 比如我从github 上clone下来项目 [Castle Core](https://github.com/castleproject-deprecated/Castle.Core-READONLY),
 您会发现,有个很不好的东东,就是`.cs文件`的头部有Apache协议的注释块,很妨碍我们Look代码。假设您Clone下来的目录为: `D:\git-project\Castle.Core`
@@ -55,7 +33,7 @@
  </summary>
 ```
 
-## 直接使用类库的方法,需要引用 `GitHeaderTool.Core` 程序集
+## 直接使用类库的方法
 
 1. 对应上面的场景一
 
@@ -105,5 +83,4 @@ public void ExcuteCatContentToXmlFile()
     Assert.AreEqual(true, result);
 }
 ```
-
 

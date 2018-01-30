@@ -21,7 +21,7 @@ namespace GitHeaderTool.Core.Commands
         public void Excute(IContextTarget contextTarget)
         {
             contextTarget.FilePath = CommandKey.Value;
-            string fileContext= File.ReadAllText(contextTarget.FilePath);
+            string fileContext= File.ReadAllText(contextTarget.FilePath,contextTarget.FileEncodingType);
             contextTarget.ContextResult.Add(ECommandLevel.f, fileContext);
         }
         /// <summary>
