@@ -51,5 +51,18 @@ namespace GitHeaderTool.Core.Test
             CommandParser.PrintError("请输入命令参数");
             Assert.AreEqual(1, 1);
         }
+        /// <summary>
+        /// 构建处理链测试
+        /// </summary>
+        [Test]
+        public void ParserToCommandTest()
+        {
+            string directory = @"F:\ScanerProject";
+            string destinationDir = @"F:\ScanerProject\web.xml";
+
+            var excuteTarget= parserInstance.ParserToCommand(new string[]{"-f",directory,"*.cs|*.cshtml|*.js","-s",@"\.L\(","-x",destinationDir});
+
+            Assert.AreEqual(1,1);
+        }
     }
 }

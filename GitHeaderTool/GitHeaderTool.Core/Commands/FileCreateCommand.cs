@@ -12,7 +12,7 @@ namespace GitHeaderTool.Core.Commands
             CommandKey = keySetting;
         }
 
-        public object Excute()
+        public void Excute(IContextTarget contextTarget)
         {
             throw new NotImplementedException();
         }

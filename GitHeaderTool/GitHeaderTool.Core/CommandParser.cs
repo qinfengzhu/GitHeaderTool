@@ -25,6 +25,7 @@ namespace GitHeaderTool.Core
     /// </summary>
     public class CommandParser
     {
+        public const string ParamterSplit = "&";
         public CommandParser() { }
         public IExcuteTarget ParserToCommand(params string[] commands)
         {
@@ -53,31 +54,33 @@ namespace GitHeaderTool.Core
                 return default(IExcuteTarget); 
             }
             //分配KeySetting
-            IExcuteTarget excuteTarget = null;
             IKeySetting fileSearchKey = KeyFactory.Instance.CreateBy(commandPairs.First());
-            excuteTarget = ((ITarget)fileSearchKey).CreateTarget();
-            //配置处理链
-            var currentExcuteTarget = excuteTarget;
-            while (currentExcuteTarget!= null)
+            IExcuteTarget excuteTarget = ((ITarget)fileSearchKey).CreateTarget();
+            IExcuteTarget contextTarget = excuteTarget;
+            #region 配置处理链
+            IKeySetting templateKeySetting = null;
+            IKeySetting templateKeyTail = null;
+            for (int index = 1, length = commandPairs.Count; index < length; index++)
             {
-                //配置后续的key处理
-                var nexkeyTail = currentExcuteTarget.Header.NextKeySetting;
-                for (int index = 1, length = commandPairs.Count; index < length;index++ )
+                if (index == 1)
                 {
-                    IKeySetting keySetting = KeyFactory.Instance.CreateBy(commandPairs[index]);
-                    if (index == 1)
-                    {
-                        currentExcuteTarget.Header.NextKeySetting = keySetting;                        
-                    }
-                    else
-                    {
-                        nexkeyTail.CommandExcute.NextKeySetting = keySetting;
-                    }
-                    nexkeyTail = keySetting;
+                    templateKeySetting = KeyFactory.Instance.CreateBy(commandPairs[index]);
+                    templateKeyTail = templateKeySetting;
                 }
-                //跳转到下一个target处理
-                currentExcuteTarget = currentExcuteTarget.NextTarget;
+                else
+                {
+                    templateKeyTail.CommandExcute.NextKeySetting = KeyFactory.Instance.CreateBy(commandPairs[index]);
+                    templateKeyTail = templateKeyTail.CommandExcute.NextKeySetting;
+                }
             }
+            #endregion
+            #region 配置处理链的上下文
+            while (contextTarget != null)
+            {
+                contextTarget.Header.NextKeySetting = templateKeySetting;
+                contextTarget = contextTarget.NextTarget;
+            }
+            #endregion
             return excuteTarget;
         }
         /// <summary>
@@ -91,8 +94,6 @@ namespace GitHeaderTool.Core
             //处理命令对
             string key = string.Empty;
             string paramter = string.Empty;
-            string paramterSplit = "|";
-
             for (int index=0, length = commands.Length; index < length;index++ )
             {
                 string command = commands[index];
@@ -103,7 +104,7 @@ namespace GitHeaderTool.Core
                 }
                 else
                 {
-                    paramter = string.IsNullOrEmpty(paramter) ? command : string.Format("{0}{1}{2}", paramter, paramterSplit, command);
+                    paramter = string.IsNullOrEmpty(paramter) ? command : string.Format("{0}{1}{2}", paramter, ParamterSplit, command);
                     if ((index+1<length&& commands[index + 1].StartsWith("-"))||index==length-1)
                     {
                         commandPairs.Add(new CommandPair(key, paramter));
@@ -146,6 +147,31 @@ namespace GitHeaderTool.Core
             #if RELEASE
             Console.Write(helpInfo.ToString());
             #endif
+        }
+    }
+    /// <summary>
+    /// 命令执行器
+    /// </summary>
+    public class CommandEngine
+    {
+        public void Excute(IExcuteTarget excuteTarget)
+        {
+            var contextTarget = excuteTarget;
+            var defaultContextTarget = new DefaultContextTarget();
+            while (contextTarget != null)
+            {
+                //执行处理链
+                contextTarget.Header.Excute(defaultContextTarget);
+                var excuteContext = contextTarget.Header.NextKeySetting;
+                while (excuteContext != null)
+                {
+                    excuteContext.CommandExcute.Excute(defaultContextTarget);
+                    excuteContext = excuteContext.CommandExcute.NextKeySetting;
+                }
+                //再来一次处理下一个文件目标
+                contextTarget = contextTarget.NextTarget;
+                defaultContextTarget.Dispose();
+            }
         }
     }
 }

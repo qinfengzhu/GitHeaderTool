@@ -10,10 +10,9 @@
         /// </summary>
         IKeySetting CommandKey { get;}
         /// <summary>
-        /// 执行结果
+        /// 执行命令
         /// </summary>
-        /// <returns>执行结果</returns>
-        object Excute();
+        void Excute(IContextTarget contextTarget);
         /// <summary>
         /// 下一个关键字命令
         /// </summary>

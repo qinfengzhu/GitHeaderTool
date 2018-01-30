@@ -1,5 +1,7 @@
 ﻿using GitHeaderTool.Core.Targets;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.IO;
 namespace GitHeaderTool.Core.Keys
 {
@@ -25,10 +27,6 @@ namespace GitHeaderTool.Core.Keys
         /// 对应的命令
         /// </summary>
         public ICommandExcute CommandExcute { get; private set; }
-        /// <summary>
-        /// 上下文
-        /// </summary>
-        public IExcuteTarget ContextTarget { get; set; }
         public FileSearchKey(string key,string value)
         {
             Key = key;
@@ -47,12 +45,12 @@ namespace GitHeaderTool.Core.Keys
         /// <returns></returns>
         public IExcuteTarget CreateTarget()
         {
-            if (Value.Contains("|"))
+            if (Value.Contains(CommandParser.ParamterSplit))
             {
-                var p = Value.Split('|');
+                var p = Value.Split(CommandParser.ParamterSplit[0]);
                 string dir = p[0];
                 string searchConditon = p[1];
-                var files = Directory.GetFiles(dir, searchConditon);
+                var files = searchConditon.GetFiles(dir);
                 IExcuteTarget targetHeader = null;
                 IExcuteTarget targetTail = null;
                 for (int index=0,length=files.Length;index<length;index++)
@@ -69,6 +67,7 @@ namespace GitHeaderTool.Core.Keys
                         var commandPair = new CommandPair("-f", files[index]);
                         IKeySetting fileSearchKey = KeyFactory.Instance.CreateBy(commandPair);
                         targetTail.NextTarget = ((ITarget)fileSearchKey).CreateTarget();
+                        targetTail = targetTail.NextTarget;
                     }
                 }
                 return targetHeader;
@@ -80,6 +79,14 @@ namespace GitHeaderTool.Core.Keys
                 return target;
             }
             return default(IExcuteTarget);
+        }
+    }
+    internal static class DirectoryExtension
+    {
+        public static string[] GetFiles(this string pattern,string dir)
+        {
+            var files= pattern.Split('|').SelectMany(p => Directory.GetFiles(dir, p)).ToArray();
+            return files;
         }
     }
 }

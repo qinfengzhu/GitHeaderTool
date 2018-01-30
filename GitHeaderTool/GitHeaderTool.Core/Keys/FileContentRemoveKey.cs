@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace GitHeaderTool.Core.Keys
 {
@@ -24,10 +25,6 @@ namespace GitHeaderTool.Core.Keys
         /// 对应的命令
         /// </summary>
         public ICommandExcute CommandExcute { get; private set; }
-        /// <summary>
-        /// 上下文
-        /// </summary>
-        public IExcuteTarget ContextTarget { get; set; }
         public FileContentRemoveKey(string key,string value)
         {
             Key = key;

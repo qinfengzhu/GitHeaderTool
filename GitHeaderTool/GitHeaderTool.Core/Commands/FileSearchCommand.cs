@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using GitHeaderTool.Core;
+
 namespace GitHeaderTool.Core.Commands
 {
     /// <summary>
@@ -15,9 +18,11 @@ namespace GitHeaderTool.Core.Commands
         /// 返回文件路径
         /// </summary>
         /// <returns></returns>
-        public object Excute()
+        public void Excute(IContextTarget contextTarget)
         {
-            return CommandKey.Value;
+            contextTarget.FilePath = CommandKey.Value;
+            string fileContext= File.ReadAllText(contextTarget.FilePath);
+            contextTarget.ContextResult.Add(ECommandLevel.f, fileContext);
         }
         /// <summary>
         /// 设置下一个执行Key

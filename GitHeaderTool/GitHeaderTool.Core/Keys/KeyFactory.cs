@@ -35,7 +35,7 @@ namespace GitHeaderTool.Core.Keys
             }
             _instance = new KeyFactory();
         }
-        internal IKeySetting CreateBy(CommandPair commandPair)
+        public IKeySetting CreateBy(CommandPair commandPair)
         {
             var keySettingType = Keys[commandPair.CommandLevel];
             var keySetting=(IKeySetting)Activator.CreateInstance(keySettingType, new object[] { commandPair.Key,commandPair.Paramater });

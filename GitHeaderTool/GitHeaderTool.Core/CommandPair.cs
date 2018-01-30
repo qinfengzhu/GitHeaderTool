@@ -6,7 +6,7 @@ namespace GitHeaderTool.Core
     /// <summary>
     /// 参数命令对
     /// </summary>
-    internal class CommandPair : IComparable<CommandPair>, IEquatable<CommandPair>,IComparer<CommandPair>
+    public class CommandPair : IComparable<CommandPair>, IEquatable<CommandPair>,IComparer<CommandPair>
     {
         public string Key { get; private set; }
         public string Paramater { get; private set; }

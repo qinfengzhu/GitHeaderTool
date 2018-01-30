@@ -49,9 +49,10 @@
     <Compile Include="Commands\FileSearchCommand.cs" />
     <Compile Include="ECommandLevel.cs" />
     <Compile Include="ICommandExcute.cs" />
-    <Compile Include="IExcuteResult.cs" />
+    <Compile Include="IContextTarget.cs" />
     <Compile Include="IExcuteTarget.cs" />
     <Compile Include="IKeySetting.cs" />
+    <Compile Include="ITarget.cs" />
     <Compile Include="Keys\ContentSearchKey.cs" />
     <Compile Include="Keys\FileContentAddKey.cs" />
     <Compile Include="Keys\FileContentRemoveKey.cs" />

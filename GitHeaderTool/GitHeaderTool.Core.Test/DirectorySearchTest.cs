@@ -39,20 +39,15 @@ namespace GitHeaderTool.Core.Test
             Assert.AreEqual(1, oneFile.Count());
         }
         /// <summary>
-        /// 根据文件模糊名称查询文件
+        /// 多种文件后缀匹配
         /// </summary>
         [Test]
-        public void SearchFilesByLikeName()
+        public void SearchFilesByMoreExtension()
         {
+            string pattern = @"*.cs|*.cshtml|*.js";
+            var files= pattern.Split('|').SelectMany(p => Directory.GetFiles(@"F:\ScanerProject", p)).ToList();
 
-        }
-        /// <summary>
-        /// 正则表达式方式查询文件
-        /// </summary>
-        [Test]
-        public void SearchFilesByRegular()
-        {
-
+            Assert.AreEqual(3, files.Count());
         }
     }
 }
