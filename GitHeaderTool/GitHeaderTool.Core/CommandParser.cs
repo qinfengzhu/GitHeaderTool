@@ -172,6 +172,8 @@ namespace GitHeaderTool.Core
                 contextTarget = contextTarget.NextTarget;
                 defaultContextTarget.Dispose();
             }
+            //构建文件
+            WebXmlContainer.BuildFile();
         }
     }
 }

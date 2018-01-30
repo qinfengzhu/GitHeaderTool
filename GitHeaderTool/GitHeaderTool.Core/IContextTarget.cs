@@ -10,7 +10,7 @@ namespace GitHeaderTool.Core
     public interface IContextTarget
     {
         string FilePath { get; set; }
-        Dictionary<ECommandLevel, string> ContextResult { get; set; }
+        Dictionary<ECommandLevel, object> ContextResult { get; set; }
     }
     /// <summary>
     /// 默认的处理上下文
@@ -18,11 +18,11 @@ namespace GitHeaderTool.Core
     public class DefaultContextTarget : IContextTarget, IDisposable
     {
         public string FilePath { get; set; }
-        public Dictionary<ECommandLevel, string> ContextResult { get; set; }
+        public Dictionary<ECommandLevel, object> ContextResult { get; set; }
         public DefaultContextTarget()
         {
             FilePath = string.Empty;
-            ContextResult = new Dictionary<ECommandLevel, string>();
+            ContextResult = new Dictionary<ECommandLevel, object>();
         }
         /// <summary>
         /// 释放资源

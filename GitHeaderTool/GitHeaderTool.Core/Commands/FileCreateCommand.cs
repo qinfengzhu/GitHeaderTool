@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace GitHeaderTool.Core.Commands
 {
     /// <summary>
@@ -14,7 +15,10 @@ namespace GitHeaderTool.Core.Commands
 
         public void Excute(IContextTarget contextTarget)
         {
-            throw new NotImplementedException();
+            string filePath = CommandKey.Value;
+            WebXmlContainer.CreateFile(filePath);
+            List<string> dataContext =(List<string>)contextTarget.ContextResult[ECommandLevel.s];
+            WebXmlContainer.AppendToFile(filePath, dataContext);
         }
 
         public IKeySetting NextKeySetting { get; set; }

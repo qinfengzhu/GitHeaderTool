@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+
 namespace GitHeaderTool.Core.Commands
 {
     /// <summary>
@@ -11,10 +13,12 @@ namespace GitHeaderTool.Core.Commands
         {
             CommandKey = keySetting;
         }
-
         public void Excute(IContextTarget contextTarget)
         {
-            throw new NotImplementedException();
+            string fileContext = (string)contextTarget.ContextResult[ECommandLevel.f];
+            Regex rgx = new Regex(CommandKey.Value);
+            rgx.Replace(fileContext, string.Empty);
+            contextTarget.ContextResult[ECommandLevel.f] = fileContext;
         }
         public IKeySetting NextKeySetting { get; set; }
     }
