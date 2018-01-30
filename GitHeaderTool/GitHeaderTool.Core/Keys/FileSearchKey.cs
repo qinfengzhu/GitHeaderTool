@@ -53,7 +53,7 @@ namespace GitHeaderTool.Core.Keys
                 var files = searchConditon.GetFiles(dir);
                 IExcuteTarget targetHeader = null;
                 IExcuteTarget targetTail = null;
-                for (int index=0,length=files.Length;index<length;index++)
+                for (int index=0,length=files.Count;index<length;index++)
                 {
                     if (index == 0)
                     {
@@ -83,9 +83,19 @@ namespace GitHeaderTool.Core.Keys
     }
     internal static class DirectoryExtension
     {
-        public static string[] GetFiles(this string pattern,string dir)
+        public static List<string> GetFiles(this string pattern,string dir)
         {
-            var files= pattern.Split('|').SelectMany(p => Directory.GetFiles(dir, p)).ToArray();
+            var childrenDirectories = Directory.GetDirectories(dir);
+            var files = new List<string>() ;
+            foreach (var childrenDir in childrenDirectories)
+            {
+                //当前文件夹文件
+                var currentDirFiles = pattern.Split('|').SelectMany(p => Directory.GetFiles(childrenDir, p)).ToList();
+                //递归获取文件
+                var moreFiles = pattern.GetFiles(childrenDir).ToList();
+                files.AddRange(currentDirFiles);
+                files.AddRange(moreFiles);
+            }
             return files;
         }
     }
